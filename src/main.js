@@ -42,7 +42,7 @@ formElem.addEventListener('submit', async e => {
     requestValue = '';
     btnLoadElem.classList.add('visually-hidden');
     galleryElem.innerHTML = '';
-    btnLoadElem.classList.remove('visually-hidden');
+    loaderElem.classList.remove('visually-hidden');
     const fetchImgData = await fetchImg(
       formElem.input.value.trim(),
       page,
@@ -69,7 +69,7 @@ formElem.addEventListener('submit', async e => {
     iziToast.warning({
       iconUrl: cautionSvg,
       position: 'topRight',
-      message: `${error}`,
+      message: 'Whoops, something went wrong! We gonna fix it soon.',
     });
   }
   formElem.reset();
