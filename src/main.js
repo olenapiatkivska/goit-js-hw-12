@@ -41,6 +41,8 @@ formElem.addEventListener('submit', async e => {
     page = 1;
     requestValue = '';
     btnLoadElem.classList.add('visually-hidden');
+    galleryElem.innerHTML = '';
+    btnLoadElem.classList.remove('visually-hidden');
     const fetchImgData = await fetchImg(
       formElem.input.value.trim(),
       page,
@@ -62,12 +64,12 @@ formElem.addEventListener('submit', async e => {
     if (page < totalPages) {
       btnLoadElem.classList.remove('visually-hidden');
     }
-  } catch (err) {
+  } catch (error) {
     loaderElem.classList.add('visually-hidden');
     iziToast.warning({
       iconUrl: cautionSvg,
       position: 'topRight',
-      message: `${err}`,
+      message: `${error}`,
     });
   }
   formElem.reset();
@@ -95,12 +97,12 @@ btnLoadElem.addEventListener('click', async e => {
       top: galleryElem.firstChild.getBoundingClientRect().height * 2,
       behavior: 'smooth',
     });
-  } catch (err) {
+  } catch (error) {
     loaderElem.classList.add('visually-hidden');
     iziToast.warning({
       iconUrl: warningSvg,
       position: 'topRight',
-      message: `${err}`,
+      message: 'Whoops, something went wrong! We gonna fix it soon.',
     });
   }
 });
